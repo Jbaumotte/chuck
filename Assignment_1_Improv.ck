@@ -76,7 +76,7 @@ while(now < stop)
     }
     
     // First chord repeat at random time
-    for (0 => int i; i < 8; i++)
+    for (0 => int i; i < 10; i++)
     {
         // C chord
         261.6 => k.freq; // C
@@ -86,12 +86,7 @@ while(now < stop)
         key[Math.random2(0,4)]/4 => tr.freq;
         // Random improvisation of the square wave, chosen from array with pentatonic scale
         // created a variable "p" to allow the frequency to be an octave higher
-        Math.random2(1,2) => int p;
-        // every solo of high pitch make the frequency an octave higher
-        if (round%4==0)
-        {
-            p*2=> p;
-        }    
+        Math.random2(1,2) => int p;    
         p*key[Math.random2(0,4)]=> sq.freq;
         // Random time
         p * 0.1::second => now;
@@ -99,10 +94,10 @@ while(now < stop)
     }
     
     // Second chord repeat at random time
-    for (0 => int i; i < 8; i++)
+    for (0 => int i; i < 10; i++)
     {
         // F Chord
-        349.2*4 => k.freq; // F
+        349.2 => k.freq; // F
         440.0 => t.freq; // A
         261.6 => f.freq; // C
         // Random frequency for low pitch (triangle wave), chosen from array with pentatonic scale
@@ -118,7 +113,7 @@ while(now < stop)
     }
     
     // Third chord repeat at random time
-    for (0 => int i; i < 8; i++)
+    for (0 => int i; i < 10; i++)
     {
         // G Chord
         392.0 => k.freq; // G
@@ -131,16 +126,12 @@ while(now < stop)
         // created a variable "a" to allow the frequency to be an octave higher
         Math.random2(1,2) => int p;
         // every solo of high pitch make the frequency an octave higher
-        if (round%4==0)
-        {
-            p*2=> p;
-        }
         p*key[Math.random2(0,4)]=> sq.freq;
         p* 0.1::second => now;
     }
     
     // Repeat first chord for 13 times at random time
-    for (0 => int i; i < 6; i++)
+    for (0 => int i; i < 8; i++)
     {
         // Final C Chord
         261.6*2 => k.freq;
@@ -158,18 +149,6 @@ while(now < stop)
         p*key[Math.random2(0,4)]=> sq.freq;
         p*0.1::second => now;
     }
-    
-    // Final C chord with solos also in C for clousure purpose
-    // Doubled the frequency of first note of the chord
-    261.6*2 => k.freq;
-    329.6 => t.freq;
-    392.0 => f.freq;
-    // triangle frequency in C
-    key[0]/4 => tr.freq;
-    // Square frequency in C
-    key[0]=> sq.freq;
-    // Hard coded time to really set the ending
-    0.5::second => now;
     
     // Increase counter by one, for the solo purpose
     round++;
