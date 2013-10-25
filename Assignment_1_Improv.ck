@@ -19,7 +19,7 @@ TriOsc tr => dac; // plays low pitch
 [ 261.6, 293.7, 329.6, 392.0, 440.0] @=> float key[];
 
 // establishing duration
-24::second => dur half;
+26::second => dur half;
 half + now => time stop;
 
 // Establishing a counter
@@ -49,7 +49,7 @@ while(now < stop)
         0 => t.gain;
         0 => f.gain;
         0.1 => sq.gain;
-        0.3 => tr.gain; 
+        0.6 => tr.gain; 
         
     }
     
@@ -61,7 +61,7 @@ while(now < stop)
         0 => t.gain;
         0 => f.gain;
         0 => sq.gain;
-        0.3 => tr.gain;  
+        0.8 => tr.gain;  
     }
     
     // volume of osc for main part
@@ -76,7 +76,7 @@ while(now < stop)
     }
     
     // First chord repeat at random time
-    for (0 => int i; i < 10; i++)
+    for (0 => int i; i < 8; i++)
     {
         // C chord
         261.6 => k.freq; // C
@@ -89,12 +89,12 @@ while(now < stop)
         Math.random2(1,2) => int p;    
         p*key[Math.random2(0,4)]=> sq.freq;
         // Random time
-        p * 0.1::second => now;
+        0.175::second => now;
         
     }
     
     // Second chord repeat at random time
-    for (0 => int i; i < 10; i++)
+    for (0 => int i; i < 8; i++)
     {
         // F Chord
         349.2 => k.freq; // F
@@ -109,11 +109,11 @@ while(now < stop)
         // created a variable "p" to allow the frequency to be an octave higher
         Math.random2(1,2) => int p;
         p*key[Math.random2(0,4)]=> sq.freq;
-        p* 0.1::second => now;
+        0.175::second => now;
     }
     
     // Third chord repeat at random time
-    for (0 => int i; i < 10; i++)
+    for (0 => int i; i < 8; i++)
     {
         // G Chord
         392.0 => k.freq; // G
@@ -127,7 +127,7 @@ while(now < stop)
         Math.random2(1,2) => int p;
         // every solo of high pitch make the frequency an octave higher
         p*key[Math.random2(0,4)]=> sq.freq;
-        p* 0.1::second => now;
+        0.175::second => now;
     }
     
     // Repeat first chord for 13 times at random time
@@ -147,7 +147,7 @@ while(now < stop)
         // created a variable p to allow the frequency to be an octave higher
         Math.random2(1,2) => int p;  
         p*key[Math.random2(0,4)]=> sq.freq;
-        p*0.1::second => now;
+        0.175::second => now;
     }
     
     // Increase counter by one, for the solo purpose
@@ -173,4 +173,4 @@ key[0]/4 => tr.freq;
 // Square frequency in C
 key[0]=> sq.freq;
 // Hard coded time to really set the ending
-1::second => now;
+.5::second => now;
